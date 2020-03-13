@@ -1,8 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
+use Illuminate\Http\Request; 
+use App\Http\Controllers\Controller; 
+use Illuminate\Support\Facades\Auth; 
+use Validator;
 
-use Illuminate\Http\Request;
+use App\Student;
+use App\User;
+
 
 class StudentApiController extends Controller
 {
@@ -13,7 +19,8 @@ class StudentApiController extends Controller
      */
     public function index()
     {
-        //
+        $student = Student::all();
+        return response()->json($student);
     }
 
     /**
@@ -23,7 +30,7 @@ class StudentApiController extends Controller
      */
     public function create()
     {
-        //
+        return User::all();
     }
 
     /**
@@ -34,7 +41,7 @@ class StudentApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Student::create($request->all());
     }
 
     /**
@@ -45,7 +52,7 @@ class StudentApiController extends Controller
      */
     public function show($id)
     {
-        //
+        return Student::find($id);
     }
 
     /**
@@ -68,7 +75,10 @@ class StudentApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student= Student::findOrfail($id);
+        $student->update($request->all());
+
+        return $student;
     }
 
     /**
@@ -79,6 +89,6 @@ class StudentApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Student::find($id)->delete();
     }
 }

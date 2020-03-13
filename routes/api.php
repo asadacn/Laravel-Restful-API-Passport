@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,3 +31,11 @@ Route::post('register', 'API\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function(){
 Route::post('details', 'API\UserController@details');});
+
+Route::get('/student/all','API\StudentApiController@index');
+Route::get('/student/{id}','API\StudentApiController@show');
+Route::delete('/student/delete/{id}','API\StudentApiController@delete');
+Route::put('/student/update/{id}','API\StudentApiController@update');
+Route::post('/student/store','API\StudentApiController@store');
+
+Route::get('/user/all','API\StudentApiController@create');
